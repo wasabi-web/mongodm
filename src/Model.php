@@ -389,6 +389,17 @@ abstract class Model
         return $ref;
     }
 
+    /**
+     * Create a Mongodb reference
+     *
+     * @param string  $toModel to model
+     *
+     * @return \ObjectId
+     */
+    public static function objectId($id)
+    {
+        return new \MongoDB\BSON\ObjectId($id);
+    }
 
     /**
      * Map fields

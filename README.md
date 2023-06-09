@@ -1,9 +1,5 @@
 ![image](https://gist.github.com/purekid/d3fc0980914209ff436b/raw/6719d0b5346aa45f50a4c19ea3d38e619638d3e1/mongodm.png)
-======= 
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/a6ae6cc6-fe3a-4cb8-85af-86529a0cb4c2/mini.png)](https://insight.sensiolabs.com/projects/a6ae6cc6-fe3a-4cb8-85af-86529a0cb4c2)
-[![Build Status](https://secure.travis-ci.org/purekid/mongodm.png?branch=master)](http://travis-ci.org/purekid/mongodm)
-[![Latest Stable Version](https://poser.pugx.org/purekid/mongodm/v/stable.png)](https://packagist.org/packages/purekid/mongodm) [![Total Downloads](https://poser.pugx.org/purekid/mongodm/downloads.png)](https://packagist.org/packages/purekid/mongodm) [![License](https://poser.pugx.org/purekid/mongodm/license.png)](https://packagist.org/packages/purekid/mongodm)
+=======
 
 - [Introduction](#introduction)
 - [Features](#features)
@@ -29,7 +25,7 @@ Features
 
 - ORM
 - Simple and flexible
-- Support for embed 
+- Support for embed
 - Support for references (lazy loaded)
 - Support for multilevel inheritance
 - Support for local collection operations
@@ -38,12 +34,12 @@ Requirements
 ------------
 - PHP 5.3 or greater (Tested for 5.5,5.6,7.0,7.1)
 - Mongodb 1.3 or greater
-- PHP Mongo extension 
+- PHP Mongo extension
 
 Installation
 ----------
 
-### 1. Setup in composer.json: 
+### 1. Setup in composer.json:
 ```json
 	{
 		"require": {
@@ -55,7 +51,7 @@ Installation
 ### 2. Install by composer:
 
 	$ php composer.phar update
-		
+
 
 Setup Database
 ----------
@@ -106,7 +102,7 @@ $config =  array( 'connection' => array(
     )
 ));
 
-// 
+//
 \Purekid\Mongodm\MongoDB::setConfigBlock('auth', array(
     'connection' => array(
         'hostnames' => 'localhost',
@@ -141,20 +137,20 @@ You have two ways to specify section :
 ### Create a model and enjoy it
 
 ```php       
-    
+
     use Purekid\Mongodm\Model;
-    
-    class User extends Model 
+
+    class User extends Model
     {
-    
+
         static $collection = "user";
-        
+
         /** use specific config section **/
         public static $config = 'testing';
-        
+
         /** specific definition for attributes, not necessary! **/
         protected static $attrs = array(
-                
+
              // 1 to 1 reference
             'book_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=> Model::DATA_TYPE_REFERENCE),
              // 1 to many references
@@ -167,7 +163,7 @@ You have two ways to specify section :
             'family'=>array('type'=> Model::DATA_TYPE_OBJECT),
             'pet_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=> Model::DATA_TYPE_EMBED),
             'pets' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=> Model::DATA_TYPE_EMBEDS),
-                
+
         );
 
         public function setFirstName($name) {
@@ -179,7 +175,7 @@ You have two ways to specify section :
         	$name = $this->__getter('name');
         	return strtoupper($name);
         }
-    
+
     }
 ```    
 
@@ -188,15 +184,15 @@ You have two ways to specify section :
 ```php
 
     [
-	'mixed',  // mixed type 
+	'mixed',  // mixed type
 	'string',     
 	'reference',  // 1 ： 1 reference
 	'references', // 1 ： many references
-	'embed', 
-	'embeds', 
+	'embed',
+	'embeds',
 	'integer',  
 	'int',  // alias of 'integer'
-	'double',     // float 
+	'double',     // float
 	'timestamp',  // store as MongoTimestamp in Mongodb
 	'date',  // store as DateTime
 	'boolean',    // true or false
@@ -205,7 +201,7 @@ You have two ways to specify section :
     ];
 
     const DATA_TYPE_ARRAY      = 'array';
-    
+
     const DATA_TYPE_BOOL       = 'bool';
     const DATA_TYPE_BOOLEAN    = 'boolean';
 
@@ -234,33 +230,33 @@ You have two ways to specify section :
 
     const DATA_TYPE_OBJ        = 'obj';
     const DATA_TYPE_OBJECT     = 'object';
-    
+
 ```
 
 If you put a object instance into a Model attribute and this attribute is undefined in $attrs of Model class,the data of attribute will be omitted when Model saving.
 
 ```php
-    
+
     $object = new \stdClass();  
     $object->name = 'ooobject';
-    
+
     $user = new User();
     $user->name = 'michael';
-    $user->myobject = $object;    // this attribute will be omitted when saving to DB 
+    $user->myobject = $object;    // this attribute will be omitted when saving to DB
     $user->save();
 
 ```
 
 Model CRUD
----------- 
+----------
 
-### Create 
+### Create
 ```php  
 	$user = new User();
 	$user->name = "Michael";
 	$user->age = 18;
 	$user->save();
-``` 
+```
 Create with initial value
 ```php  
 	$user = new User( array('name'=>"John") );
@@ -305,7 +301,7 @@ Get using variable or method
 ```
 Update attributes by array
 ```php  
-	$user->update( array('age'=>18,'hobbies'=>array('music','game') ) ); 
+	$user->update( array('age'=>18,'hobbies'=>array('music','game') ) );
 	$user->save();
 ```
 Unset attributes
@@ -318,13 +314,13 @@ Unset attributes
 ### Retrieve single record
 ```php  
 	$user = User::one( array('name'=>"michael" ) );
-```	
+```
 retrieve one record by MongoId
 ```php  
 	$id = "517c850641da6da0ab000004";
 	$id = new \MongoId('517c850641da6da0ab000004'); //another way
 	$user = User::id( $id );
-```	
+```
 ### Retrieve records
 
 Retrieve records that name is 'Michael' and acount  of owned  books equals 2
@@ -336,7 +332,7 @@ Retrieve records that name is 'Michael' and acount  of owned  books equals 2
 ### Retrieve all records
 ```php  
 	$users = User::all();
-```	
+```
 ### Count records
 ```php  
 	$count = User::count(array('age'=>16));
@@ -344,10 +340,10 @@ Retrieve records that name is 'Michael' and acount  of owned  books equals 2
 ### Delete record
 ```php  
 	$user = User::one();
-	$user->delete();	
-```	
+	$user->delete();
+```
 Relationship - Reference
----------- 
+----------
 ### Lazyload a 1:1 relationship record
 ```php  
 	$book = new Book();
@@ -371,7 +367,7 @@ Relationship - Reference
 	$book1 = new Book();
 	$book1->name = "book1";
 	$book1->save();
-	
+
 	$book2 = new Book();
 	$book2->name = "book2";
 	$book2->save();
@@ -386,9 +382,9 @@ Relationship - Reference
 	$books = $user->books;      // $books is a instance of Collection
 ```
 Relationship - Embed
----------- 
+----------
 
-### Single Embed 
+### Single Embed
 ```php  
 	$pet = new Pet();
 	$pet->name = "putty";
@@ -404,11 +400,11 @@ Relationship - Embed
 ```php  
 	$user = User::one();
 	$id = $user->getId();
-	
+
 	$pet_dog = new Pet();
 	$pet_dog->name = "puppy";
 	$pet_dog->save();
-	
+
 	$pet_cat = new Pet();
 	$pet_cat->name = "kitty";
 	$pet_cat->save();
@@ -421,13 +417,13 @@ Relationship - Embed
 	$user = User::id($id);
 	$pets = $user->pets;     
 ```
-###  Collection 
+###  Collection
 
 $users is instance of Collection
 ```php  
 	$users = User::find(  array( 'name'=>'Michael','books'=>array('$size'=>2) ) );    
 	$users_other = User::find(  array( 'name'=>'John','books'=>array('$size'=>2) ) );   
-```	
+```
 Save
 ```php
     $users->save() ;  // foreach($users as $user) { $user->save(); }
@@ -436,33 +432,33 @@ Delete
 ```php
     $users->delete() ;  // foreach($users as $user) { $user->delete(); }
 ```
-Count 
+Count
 ```php  
 	$users->count();  
 	$users->isEmpty();
-```	
-Iteration	
+```
+Iteration
 ```php  
 	foreach($users as $user) { }  
-	
-	// OR use Closure 
-	
+
+	// OR use Closure
+
 	$users->each(function($user){
-	
+
 	})
-```	
+```
 Sort
 ```php  
 	//sort by age desc
 	$users->sortBy(function($user){
 	    return $user->age;
 	});
-	
+
 	//sort by name asc
 	$users->sortBy(function($user){
 	    return $user->name;
 	} , true);
-	
+
 	//reverse collection items
 	$users->reverse();
 ```
@@ -470,7 +466,7 @@ Slice and Take
 ```php  	
 	$users->slice(0,1);
 	$users->take(2);
-```	
+```
 Map
 ```php  	
 	$func = function($user){
@@ -479,11 +475,11 @@ Map
 	        	}
 	            return $user;
 			};
-	
+
 	$users->map($func)->save();   
-	
-```	
-Filter 
+
+```
+Filter
 ```php  
 	$func = function($user){
 	        	if( $user->age >= 18 ){
@@ -493,27 +489,27 @@ Filter
 
 	$adults = $users->filter($func); // $adults is a new collection
 ```
-Determine a record exists in the collection by object instance	
+Determine a record exists in the collection by object instance
 ```php  	
 	$john = User::one(array("name"=>"John"));
-	
-	$users->has($john) 
+
+	$users->has($john)
 ```
-Determine a record exists in the collection by numeric index	
+Determine a record exists in the collection by numeric index
 ```php  
-	$users->has(0) 
-```	
-Determine a record exists in the collection by MongoID	
+	$users->has(0)
+```
+Determine a record exists in the collection by MongoID
 ```php  
-	$users->has('518c6a242d12d3db0c000007') 
+	$users->has('518c6a242d12d3db0c000007')
 ```
 Get a record by numeric index
 ```php  
-	$users->get(0) 
+	$users->get(0)
 ```
-Get a record by MongoID 
+Get a record by MongoID
 ```php  
-	$users->get('518c6a242d12d3db0c000007') 
+	$users->get('518c6a242d12d3db0c000007')
 ```
 Remove a record by numeric index
 ```php  
@@ -521,43 +517,43 @@ Remove a record by numeric index
 ```
 Remove a record  by MongoID
 ```php  
-	$users->remove('518c6a242d12d3db0c000007') 
-```	
+	$users->remove('518c6a242d12d3db0c000007')
+```
 Add a single record to collection
 ```php  
 	$bob = new User( array("name"=>"Bob"));
 	$bob->save();
 	$users->add($bob);
-```	
+```
 Add records to collection
 ```php  	
 	$bob = new User( array("name"=>"Bob"));
 	$bob->save();
 	$lisa = new User( array("name"=>"Lisa"));
 	$lisa->save();
-	
-	$users->add( array($bob,$lisa) ); 
-```	
-Merge two collection 
+
+	$users->add( array($bob,$lisa) );
+```
+Merge two collection
 ```php  	
-	$users->add($users_other);  // the collection $users_other appends to end of $users 
+	$users->add($users_other);  // the collection $users_other appends to end of $users
 ```
 Export data to a array
 ```php  
 	$users->toArray();
-```	
+```
 Inheritance
 ----------
-	
+
 ### Define multilevel inheritable models:
 ```php  
 	use Purekid\Mongodm\Model;
 	namespace Demo;
-	
+
 	class Human extends Model{
-	
+
 		static $collection = "human";
-		
+
 		protected static $attrs = array(
 			'name' => array('default'=>'anonym','type'=>'string'),
 			'age' => array('type'=>'integer'),
@@ -566,59 +562,59 @@ Inheritance
 			'mum' =>  array('type'=>'reference','model'=>'Demo\Human'),
 			'friends' => array('type'=>'references','model'=>'Demo\Human'),
 		)
-	
+
 	}
 
 	class Student extends Human{
-	
+
 		protected static $attrs = array(
 			'grade' => array('type'=>'string'),
 			'classmates' => array('type'=>'references','model'=>'Demo\Student'),
 		)
-		
+
 	}
-```	
+```
 ### Use:
 ```php  
 	$bob = new Student( array('name'=>'Bob','age'=> 17 ,'gender'=>'male' ) );
 	$bob->save();
-	
+
 	$john = new Student( array('name'=>'John','age'=> 16 ,'gender'=>'male' ) );
 	$john->save();
-	
+
 	$lily = new Student( array('name'=>'Lily','age'=> 16 ,'gender'=>'female' ) );
 	$lily->save();
-	
+
 	$lisa = new Human( array('name'=>'Lisa','age'=>41 ,'gender'=>'female' ) );
 	$lisa->save();
-	
+
 	$david = new Human( array('name'=>'David','age'=>42 ,'gender'=>'male') );
 	$david->save();
-	
+
 	$bob->dad = $david;
 	$bob->mum = $lisa;
 	$bob->classmates = array( $john, $lily );
 	$bob->save();
-```	
+```
 ### Retrieve and check value:
 ```php  
 	$bob = Student::one( array("name"=>"Bob") );
-	
+
 	echo $bob->dad->name;    // David
-	
+
 	$classmates = $bob->classmates;
-	
+
 	echo $classmates->count(); // 2
-    
-	var_dump($classmates->get(0)); // john	
-```	
+
+	var_dump($classmates->get(0)); // john
+```
 
 ### Retrieve subclass
 
 Retrieve all Human records , queries without '_type' because of it's a toplevel class.
 ```php  	
     $humans = Human::all();
-``` 
+```
 Retrieve all Student records , queries with  { "_type":"Student" } because of it's a subclass.
 ```php  
     $students = Student::all();
@@ -642,7 +638,7 @@ _Make sure to set a collection otherwise you will get results with every `_type`
 Other static methods in Model
 ----------
 ```php
-	User::drop() // Drop collection 
+	User::drop() // Drop collection
 	User::ensureIndex()  // Add index for collection
 ```
 Model Hooks
@@ -690,8 +686,3 @@ Special thanks to
 
 [mikelbring](https://github.com/mikelbring)
 [Paul Hrimiuc](https://github.com/hpaul/)
-
-
-	
-	
-
