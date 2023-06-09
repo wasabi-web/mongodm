@@ -1,6 +1,10 @@
 ![image](https://gist.github.com/purekid/d3fc0980914209ff436b/raw/6719d0b5346aa45f50a4c19ea3d38e619638d3e1/mongodm.png)
 =======
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/a6ae6cc6-fe3a-4cb8-85af-86529a0cb4c2/mini.png)](https://insight.sensiolabs.com/projects/a6ae6cc6-fe3a-4cb8-85af-86529a0cb4c2)
+[![Build Status](https://secure.travis-ci.org/purekid/mongodm.png?branch=master)](http://travis-ci.org/purekid/mongodm)
+[![Latest Stable Version](https://poser.pugx.org/purekid/mongodm/v/stable.png)](https://packagist.org/packages/purekid/mongodm) [![Total Downloads](https://poser.pugx.org/purekid/mongodm/downloads.png)](https://packagist.org/packages/purekid/mongodm) [![License](https://poser.pugx.org/purekid/mongodm/license.png)](https://packagist.org/packages/purekid/mongodm)
+
 - [Introduction](#introduction)
 - [Features](#features)
 - [Requirements](#requirements)
@@ -40,7 +44,7 @@ Installation
 ----------
 
 ### 1. Setup in composer.json:
-```json
+```yml
 	{
 		"require": {
 		    "purekid/mongodm": "dev-master"
@@ -137,10 +141,7 @@ You have two ways to specify section :
 ### Create a model and enjoy it
 
 ```php       
-
-    use Purekid\Mongodm\Model;
-
-    class User extends Model
+    class User extends \Purekid\Mongodm\Model
     {
 
         static $collection = "user";
@@ -152,17 +153,17 @@ You have two ways to specify section :
         protected static $attrs = array(
 
              // 1 to 1 reference
-            'book_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=> Model::DATA_TYPE_REFERENCE),
+            'book_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'reference'),
              // 1 to many references
-            'books' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=> Model::DATA_TYPE_REFERENCES),
+            'books' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'references'),
             // you can define default value for attribute
-            'age' => array('default'=>16,'type'=> Model::DATA_TYPE_INTEGER),
-            'money' => array('default'=>20.0,'type'=> Model::DATA_TYPE_DOUBLE),
-            'hobbies' => array('default'=>array('love'),'type'=> Model::DATA_TYPE_ARRAY),
-            'born_time' => array('type'=> Model::DATA_TYPE_TIMESTAMP),
-            'family'=>array('type'=> Model::DATA_TYPE_OBJECT),
-            'pet_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=> Model::DATA_TYPE_EMBED),
-            'pets' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=> Model::DATA_TYPE_EMBEDS),
+            'age' => array('default'=>16,'type'=>'integer'),
+            'money' => array('default'=>20.0,'type'=>'double'),
+            'hobbies' => array('default'=>array('love'),'type'=>'array'),
+            'born_time' => array('type'=>'timestamp'),
+            'family'=>array('type'=>'object'),
+            'pet_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=>'embed'),
+            'pets' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=>'embeds'),
 
         );
 
@@ -182,55 +183,22 @@ You have two ways to specify section :
 ### Types supported for model attributes
 
 ```php
-
-    [
-	'mixed',  // mixed type
-	'string',     
-	'reference',  // 1 ： 1 reference
-	'references', // 1 ： many references
-	'embed',
-	'embeds',
-	'integer',  
-	'int',  // alias of 'integer'
-	'double',     // float
-	'timestamp',  // store as MongoTimestamp in Mongodb
-	'date',  // store as DateTime
-	'boolean',    // true or false
-	'array',    
-	'object'
-    ];
-
-    const DATA_TYPE_ARRAY      = 'array';
-
-    const DATA_TYPE_BOOL       = 'bool';
-    const DATA_TYPE_BOOLEAN    = 'boolean';
-
-    const DATA_TYPE_DATE       = 'date';
-
-    const DATA_TYPE_DBL        = 'dbl';
-    const DATA_TYPE_DOUBLE     = 'double';
-    const DATA_TYPE_FLT        = 'flt';
-    const DATA_TYPE_FLOAT      = 'float';
-
-    const DATA_TYPE_EMBED      = 'embed';
-    const DATA_TYPE_EMBEDS     = 'embeds';
-
-    const DATA_TYPE_INT        = 'int';
-    const DATA_TYPE_INTEGER    = 'integer';
-
-    const DATA_TYPE_MIXED      = 'mixed';
-
-    const DATA_TYPE_REFERENCE  = 'reference';
-    const DATA_TYPE_REFERENCES = 'references';
-
-    const DATA_TYPE_STR        = 'str';
-    const DATA_TYPE_STRING     = 'string';
-
-    const DATA_TYPE_TIMESTAMP  = 'timestamp';
-
-    const DATA_TYPE_OBJ        = 'obj';
-    const DATA_TYPE_OBJECT     = 'object';
-
+	$types = [
+	    'mixed',  // mixed type
+	    'string',     
+	    'reference',  // 1 ： 1 reference
+	    'references', // 1 ： many references
+	    'embed',
+	    'embeds',
+	    'integer',  
+	    'int',  // alias of 'integer'
+	    'double',     // float
+	    'timestamp',  // store as MongoTimestamp in Mongodb
+	    'date',  // store as DateTime
+	    'boolean',    // true or false
+	    'array',    
+	    'object'
+	]
 ```
 
 If you put a object instance into a Model attribute and this attribute is undefined in $attrs of Model class,the data of attribute will be omitted when Model saving.
@@ -356,8 +324,15 @@ Relationship - Reference
 	$user->save();
 
 	// now you can do this
-	$user = User::one( array('name'=>"michael" ) );
+	$user = User::one([
+		'name' => 'michael'
+	]);
 	echo $user->book_fav->name;
+
+	// or, find the parent by a known reference
+	$user = User::one([
+		'book_fav' => $book
+	]);
 ```
 ### Lazyload 1:many relationship records
 ```php  

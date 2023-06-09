@@ -390,18 +390,6 @@ abstract class Model
     }
 
     /**
-     * Create a Mongodb reference
-     *
-     * @param string  $toModel to model
-     *
-     * @return \ObjectId
-     */
-    public static function objectId($id)
-    {
-        return new \MongoDB\BSON\ObjectId($id);
-    }
-
-    /**
      * Map fields
      *
      * @param array $array   array
@@ -922,7 +910,7 @@ abstract class Model
     }
 
     /**
-     * Process the criteria , add _type to criteria in some cases.
+     * Process the criteria, add _type to criteria in some cases.
      * @param $criteria array Criteria to process
      *
      * @return null
@@ -933,6 +921,17 @@ abstract class Model
         $types = $class::getModelTypes();
         if (count($types) > 1) {
             $criteria['_type'] = $class::getClassName(false);
+        }
+
+        // Loop to check if there are references to other Models
+        // Go through the keys specifically so the unset does not derail the for
+        foreach (array_keys($criteria) as $key) {
+          // If we're trying to find a Model
+          if ($criteria[$key] instanceof Model && substr($key, -4) != '.$id') {
+            // Change the criteria to match the db id to the Model id
+            $criteria[$key . '.$id'] = $criteria[$key]->_id;
+            unset($criteria[$key]);
+          }
         }
 
     }
@@ -1675,4 +1674,3 @@ abstract class Model
     }
 
 }
-
