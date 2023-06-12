@@ -22,7 +22,7 @@
 
 Introduction
 ------------
-Mongodm is a MongoDB ORM that includes support for references,embed and even multilevel inheritance.
+Mongodm is a MongoDB ORM that includes support for references,embed and even multilevel inheritance. Maintained fork of [purekid/mongodm](https://github.com/purekid/mongodm).
 
 Features
 --------
@@ -47,7 +47,7 @@ Installation
 ```yml
 	{
 		"require": {
-		    "purekid/mongodm": "dev-master"
+		    "wasabi-web/mongodm": "master"
 		}
 	}
 ```
@@ -60,7 +60,7 @@ Installation
 Setup Database
 ----------
 
-Database config file  (By default it locates at /vendor/purekid/mongodm/config.php)
+Database config file  (By default it locates at /vendor/wasabi-web/mongodm/config.php)
 
 ```php
 	return array(
@@ -98,7 +98,7 @@ $config =  array( 'connection' => array(
 
 ```php
 
-\Purekid\Mongodm\MongoDB::setConfigBlock('default', array(
+\WasabiWeb\Mongodm\MongoDB::setConfigBlock('default', array(
     'connection' => array(
         'hostnames' => 'localhost',
         'database'  => 'default',
@@ -107,7 +107,7 @@ $config =  array( 'connection' => array(
 ));
 
 //
-\Purekid\Mongodm\MongoDB::setConfigBlock('auth', array(
+\WasabiWeb\Mongodm\MongoDB::setConfigBlock('auth', array(
     'connection' => array(
         'hostnames' => 'localhost',
         'database'  => 'authDB',
@@ -141,7 +141,7 @@ You have two ways to specify section :
 ### Create a model and enjoy it
 
 ```php       
-    class User extends \Purekid\Mongodm\Model
+    class User extends \WasabiWeb\Mongodm\Model
     {
 
         static $collection = "user";
@@ -153,17 +153,17 @@ You have two ways to specify section :
         protected static $attrs = array(
 
              // 1 to 1 reference
-            'book_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'reference'),
+            'book_fav' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Book','type'=>'reference'),
              // 1 to many references
-            'books' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'references'),
+            'books' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Book','type'=>'references'),
             // you can define default value for attribute
             'age' => array('default'=>16,'type'=>'integer'),
             'money' => array('default'=>20.0,'type'=>'double'),
             'hobbies' => array('default'=>array('love'),'type'=>'array'),
             'born_time' => array('type'=>'timestamp'),
             'family'=>array('type'=>'object'),
-            'pet_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=>'embed'),
-            'pets' => array('model'=>'Purekid\Mongodm\Test\Model\Pet','type'=>'embeds'),
+            'pet_fav' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Pet','type'=>'embed'),
+            'pets' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Pet','type'=>'embeds'),
 
         );
 
@@ -522,7 +522,7 @@ Inheritance
 
 ### Define multilevel inheritable models:
 ```php  
-	use Purekid\Mongodm\Model;
+	use WasabiWeb\Mongodm\Model;
 	namespace Demo;
 
 	class Human extends Model{
@@ -600,7 +600,7 @@ Retrieve all Student records , queries with  { "_type":"Student" } because of it
 To retrieve a record without the `_type` criteria (i.e. `{ "_type":"Student" }`) set:
 
 ```php
-class Student extends \Purekid\Mongodm\Model
+class Student extends \WasabiWeb\Mongodm\Model
 {
     protected static $useType = false;
 

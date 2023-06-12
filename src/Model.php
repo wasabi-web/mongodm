@@ -489,15 +489,14 @@ abstract class Model
      *
      * @return Collection
      */
-    public static function find($criteria = array(), $sort = array(), $fields = array() , $limit = null , $skip = null)
+    public static function find($criteria = [], $sort = [], $fields = [], $limit = null , $skip = null)
     {
 
         self::processCriteriaWithType($criteria);
 
+        $results = self::connection()->find(static::$collection, $criteria, self::mapFields($fields));
 
-        $results =  self::connection()->find(static::$collection, $criteria, self::mapFields($fields));
-
-        if ( ! is_null($limit)) {
+        if (!is_null($limit)) {
             $results->limit($limit);
         }
 
@@ -509,7 +508,7 @@ abstract class Model
             $results->sort(self::mapFields($sort));
         }
 
-        return Hydrator::hydrate(get_called_class(), $results , Hydrator::TYPE_COLLECTION , true);
+        return Hydrator::hydrate(get_called_class(), $results, Hydrator::TYPE_COLLECTION, true);
 
     }
 
@@ -865,7 +864,7 @@ abstract class Model
     }
 
     /**
-     * Update the 'references' attribute for model's instance when that 'references' data  has changed.
+     * Update the 'references' attribute for model's instance when that 'references' data has changed.
      *
      * @return null
      */
@@ -873,6 +872,7 @@ abstract class Model
     {
         $cache = $this->_cache;
         $attrs = $this->getAttrs();
+
         foreach ($cache as $key => $item) {
             if(!isset($attrs[$key])) continue;
             $attr = $attrs[$key];
