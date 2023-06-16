@@ -15,7 +15,7 @@
  * @link     https://github.com/purekid/mongodm
  */
 
-namespace Purekid\Mongodm\Exception;
+namespace WasabiWeb\Mongodm\Exception;
 
 /**
  * Invalid Data Type Exception

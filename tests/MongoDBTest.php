@@ -1,9 +1,9 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
-use Purekid\Mongodm\Test\Model\User;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Test\Model\User;
 
 class MongoDBTest extends PhactoryTestCase
 {

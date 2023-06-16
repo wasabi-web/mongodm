@@ -1,14 +1,14 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-class ParseValueTest extends \Purekid\Mongodm\Test\TestCase\PhactoryTestCase
+class ParseValueTest extends \WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase
 {
   public $model;
 
   public function __construct()
   {
-    $this->model = new \Purekid\Mongodm\Test\Model\DataType();
+    $this->model = new \WasabiWeb\Mongodm\Test\Model\DataType();
   }
 
   public function testArray()
@@ -17,7 +17,7 @@ class ParseValueTest extends \Purekid\Mongodm\Test\TestCase\PhactoryTestCase
     $actual = $this->model->parseValue('array', $data);
     $this->assertInternalType('array', $actual);
 
-    $this->setExpectedException('\Purekid\Mongodm\Exception\InvalidDataTypeException');
+    $this->setExpectedException('\WasabiWeb\Mongodm\Exception\InvalidDataTypeException');
     $data = 1;
     $actual = $this->model->parseValue('array', $data);
   }
@@ -62,7 +62,7 @@ class ParseValueTest extends \Purekid\Mongodm\Test\TestCase\PhactoryTestCase
     $actual = $this->model->parseValue('timestamp', $data);
     $this->assertInstanceOf(\MongoTimestamp::class, $actual);
     $this->assertEquals($data, $actual->sec);
-//    $this->setExpectedException(\Purekid\Mongodm\Exception\InvalidDataTypeException::class);
+//    $this->setExpectedException(\WasabiWeb\Mongodm\Exception\InvalidDataTypeException::class);
 //    $data = 'today';
 //    $actual = $this->model->parseValue('timestamp', $data);
 
@@ -82,7 +82,7 @@ class ParseValueTest extends \Purekid\Mongodm\Test\TestCase\PhactoryTestCase
     $actual = $this->model->parseValue('date', $data);
     $this->assertInstanceOf('\MongoDate', $actual);
 
-    $this->setExpectedException(\Purekid\Mongodm\Exception\InvalidDataTypeException::class);
+    $this->setExpectedException(\WasabiWeb\Mongodm\Exception\InvalidDataTypeException::class);
     $data = 'a random string';
     $actual = $this->model->parseValue('date', $data);
   }
@@ -128,7 +128,7 @@ class ParseValueTest extends \Purekid\Mongodm\Test\TestCase\PhactoryTestCase
 
   public function testInvalidType()
   {
-    $this->setExpectedException('\Purekid\Mongodm\Exception\InvalidDataTypeException');
+    $this->setExpectedException('\WasabiWeb\Mongodm\Exception\InvalidDataTypeException');
     $this->model->parseValue('invalid', null);
   }
 

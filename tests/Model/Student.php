@@ -1,6 +1,6 @@
 <?php
 
-namespace Purekid\Mongodm\Test\Model;
+namespace WasabiWeb\Mongodm\Test\Model;
 
 class Student extends User
 {

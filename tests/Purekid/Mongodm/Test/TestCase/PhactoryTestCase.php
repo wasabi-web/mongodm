@@ -1,9 +1,9 @@
 <?php
 
-namespace Purekid\Mongodm\Test\TestCase;
+namespace WasabiWeb\Mongodm\Test\TestCase;
 
 use Phactory\Mongo\Phactory;
-use Purekid\Mongodm\ConnectionManager;
+use WasabiWeb\Mongodm\ConnectionManager;
 
 /**
  * Test Case Base Class for using Phactory *

@@ -15,7 +15,7 @@
  * @link     https://github.com/purekid/mongodm
  */
 
-namespace Purekid\Mongodm;
+namespace WasabiWeb\Mongodm;
 
 
 /**
@@ -68,12 +68,12 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      */
     public function add($items)
     {
-        if ($items && $items instanceof \Purekid\Mongodm\Model) {
+        if ($items && $items instanceof \WasabiWeb\Mongodm\Model) {
             $id = (string) $items->getId();
             $this->_items[$id] = $items;
         } elseif (is_array($items)) {
             foreach ($items as $obj) {
-                if ($obj instanceof \Purekid\Mongodm\Model) {
+                if ($obj instanceof \WasabiWeb\Mongodm\Model) {
                     $this->add($obj);
                 }
             }
@@ -90,7 +90,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      *
      * @param int $index model to get
      *
-     * @return \Purekid\Mongodm\Model
+     * @return \WasabiWeb\Mongodm\Model
      */
     public function get($index = 0)
     {
@@ -147,7 +147,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      * @param int  $length       length
      * @param bool $preserveKeys preserve keys
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function slice($offset, $length = null, $preserveKeys = false)
     {
@@ -159,7 +159,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      *
      * @param int $limit limit
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function take($limit = null)
     {
@@ -207,7 +207,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      *
      * @param \Closure $callback callback
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function map(\Closure $callback)
     {
@@ -222,7 +222,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      *
      * @param \Closure $callback callback
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function filter(\Closure $callback)
     {
@@ -235,7 +235,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      * @param \Closure $callback callback
      * @param boolean $asc      asc
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function sortBy(\Closure $callback , $asc = false)
     {
@@ -263,7 +263,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
     /**
      * Reverse items order.
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function reverse()
     {
@@ -279,7 +279,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      *
      * @param array $models models
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public static function make($models)
     {
@@ -312,7 +312,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
      *
      * @param \Closure $callback callback
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function each(\Closure $callback)
     {
@@ -463,7 +463,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
     /**
      * Save items
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function save(){
 
@@ -480,7 +480,7 @@ class Collection  implements \IteratorAggregate, \ArrayAccess, \Countable
     /**
      * Delete items
      *
-     * @return \Purekid\Mongodm\Collection
+     * @return \WasabiWeb\Mongodm\Collection
      */
     public function delete(){
 

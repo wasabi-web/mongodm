@@ -1,12 +1,12 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\Collection;
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
-use Purekid\Mongodm\Test\Model\Pet;
-use Purekid\Mongodm\Test\Model\Book;
-use Purekid\Mongodm\Test\Model\User;
+use WasabiWeb\Mongodm\Collection;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Test\Model\Pet;
+use WasabiWeb\Mongodm\Test\Model\Book;
+use WasabiWeb\Mongodm\Test\Model\User;
 
 class FieldMapTest extends PhactoryTestCase
 {

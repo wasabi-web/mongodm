@@ -1,8 +1,8 @@
 <?php
 
-namespace Purekid\Mongodm\Test\Model;
+namespace WasabiWeb\Mongodm\Test\Model;
 
-class Base extends \Purekid\Mongodm\Model
+class Base extends \WasabiWeb\Mongodm\Model
 {
     public static $config = "testing";
 }

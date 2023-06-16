@@ -15,7 +15,7 @@
  * @link     https://github.com/purekid/mongodm
  */
 
-namespace Purekid\Mongodm;
+namespace WasabiWeb\Mongodm;
 
 /**
  * Mongodm - A PHP Mongodb ORM

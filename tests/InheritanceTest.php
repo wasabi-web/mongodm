@@ -1,11 +1,11 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
-use Purekid\Mongodm\Test\Model\Pupil;
-use Purekid\Mongodm\Test\Model\Book;
-use Purekid\Mongodm\Test\Model\Student;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Test\Model\Pupil;
+use WasabiWeb\Mongodm\Test\Model\Book;
+use WasabiWeb\Mongodm\Test\Model\Student;
 
 class InheritanceTest extends PhactoryTestCase
 {

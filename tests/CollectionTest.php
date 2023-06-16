@@ -1,11 +1,11 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
-use Purekid\Mongodm\Collection;
-use Purekid\Mongodm\Test\Model\Book;
-use Purekid\Mongodm\Test\Model\User;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Collection;
+use WasabiWeb\Mongodm\Test\Model\Book;
+use WasabiWeb\Mongodm\Test\Model\User;
 
 class CollectionTest extends PhactoryTestCase
 {
@@ -249,7 +249,7 @@ class CollectionTest extends PhactoryTestCase
 
         $this->assertInstanceOf('ArrayIterator', $it);
         foreach($it as $book) {
-            $this->assertInstanceOf('\Purekid\Mongodm\Test\Model\Book', $book);
+            $this->assertInstanceOf('\WasabiWeb\Mongodm\Test\Model\Book', $book);
         }
     }
 
@@ -273,7 +273,7 @@ class CollectionTest extends PhactoryTestCase
 
         foreach ($result as $key => $book) {
             $this->assertInternalType('string', $key);
-            $this->assertInstanceOf('\Purekid\Mongodm\Test\Model\Book', $book);
+            $this->assertInstanceOf('\WasabiWeb\Mongodm\Test\Model\Book', $book);
             $this->assertSame($key, (string) $book->getId());
         }
     }
@@ -317,7 +317,7 @@ class CollectionTest extends PhactoryTestCase
 
         $result = $this->ordered_books[$id];
 
-        $this->assertInstanceOf('\Purekid\Mongodm\Test\Model\Book', $result);
+        $this->assertInstanceOf('\WasabiWeb\Mongodm\Test\Model\Book', $result);
     }
 
     public function testOffsetGetReturnsModelForStringIndex()
@@ -327,7 +327,7 @@ class CollectionTest extends PhactoryTestCase
 
         $result = $this->ordered_books[$id];
 
-        $this->assertInstanceOf('\Purekid\Mongodm\Test\Model\Book', $result);
+        $this->assertInstanceOf('\WasabiWeb\Mongodm\Test\Model\Book', $result);
     }
 
     public function testOffsetUnsetRemovesModelForIntegerIndex()

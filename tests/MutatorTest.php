@@ -1,6 +1,6 @@
 <?php
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
-use Purekid\Mongodm\Test\Model\User;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Test\Model\User;
 
 class MutatorTest extends PhactoryTestCase
 {

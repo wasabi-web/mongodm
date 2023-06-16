@@ -1,8 +1,8 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
 
 class GridFsTest extends PhactoryTestCase
 {

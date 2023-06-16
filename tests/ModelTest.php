@@ -1,14 +1,14 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\ConnectionManager;
-use Purekid\Mongodm\Test\Model\Pet;
-use Purekid\Mongodm\Test\TestCase\PhactoryTestCase;
-use Purekid\Mongodm\Test\Model\Book;
-use Purekid\Mongodm\Test\Model\CustomId;
-use Purekid\Mongodm\Test\Model\User;
-use Purekid\Mongodm\Collection;
+use WasabiWeb\Mongodm\ConnectionManager;
+use WasabiWeb\Mongodm\Test\Model\Pet;
+use WasabiWeb\Mongodm\Test\TestCase\PhactoryTestCase;
+use WasabiWeb\Mongodm\Test\Model\Book;
+use WasabiWeb\Mongodm\Test\Model\CustomId;
+use WasabiWeb\Mongodm\Test\Model\User;
+use WasabiWeb\Mongodm\Collection;
 
 class ModelTest extends PhactoryTestCase
 {

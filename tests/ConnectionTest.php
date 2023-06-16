@@ -1,9 +1,9 @@
 <?php
 
-namespace Purekid\Mongodm\Test;
+namespace WasabiWeb\Mongodm\Test;
 
-use Purekid\Mongodm\ConnectionManager;
-use Purekid\Mongodm\MongoDB;
+use WasabiWeb\Mongodm\ConnectionManager;
+use WasabiWeb\Mongodm\MongoDB;
 
 class ConnectionTest extends \PHPUnit_Framework_TestCase
 {

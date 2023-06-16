@@ -1,6 +1,6 @@
 <?php
 
-namespace Purekid\Mongodm\Test\Model;
+namespace WasabiWeb\Mongodm\Test\Model;
 
 class User extends Base
 {
@@ -9,20 +9,20 @@ class User extends Base
 
     protected static $attrs = array(
 
-        'book_fav' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'reference'),
-        'books' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'references'),
+        'book_fav' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Book','type'=>'reference'),
+        'books' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Book','type'=>'references'),
         'age' => array('default'=>16,'type'=>'integer'),
         'money' => array('default'=>20.0,'type'=>'double'),
         'hobbies' => array('default'=>array('love'),'type'=>'array'),
         'family'=>array('type'=>'object'),
-        'pet' => array( 'model'=>'Purekid\Mongodm\Test\Model\Pet' , 'type'=>'embed'),
-        'pets_fav' => array( 'model'=>'Purekid\Mongodm\Test\Model\Pet' , 'type'=>'embeds'),
+        'pet' => array( 'model'=>'WasabiWeb\Mongodm\Test\Model\Pet' , 'type'=>'embed'),
+        'pets_fav' => array( 'model'=>'WasabiWeb\Mongodm\Test\Model\Pet' , 'type'=>'embeds'),
 
         'fieldMapping' => array('type'=>'string', 'field'=>'field_mapping'),
-        'fieldMappingRef' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'reference', 'field' => 'field_mapping_ref'),
-        'fieldMappingRefs' => array('model'=>'Purekid\Mongodm\Test\Model\Book','type'=>'references', 'field' => 'field_mapping_refs'),
-    'fieldMappingEmbed' => array( 'model'=>'Purekid\Mongodm\Test\Model\Pet' , 'type'=>'embed', 'field' => 'field_mapping_embed'),
-    'fieldMappingEmbeds' => array( 'model'=>'Purekid\Mongodm\Test\Model\Pet' , 'type'=>'embeds', 'field' => 'field_mapping_embeds')
+        'fieldMappingRef' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Book','type'=>'reference', 'field' => 'field_mapping_ref'),
+        'fieldMappingRefs' => array('model'=>'WasabiWeb\Mongodm\Test\Model\Book','type'=>'references', 'field' => 'field_mapping_refs'),
+    'fieldMappingEmbed' => array( 'model'=>'WasabiWeb\Mongodm\Test\Model\Pet' , 'type'=>'embed', 'field' => 'field_mapping_embed'),
+    'fieldMappingEmbeds' => array( 'model'=>'WasabiWeb\Mongodm\Test\Model\Pet' , 'type'=>'embeds', 'field' => 'field_mapping_embeds')
 
     );
 

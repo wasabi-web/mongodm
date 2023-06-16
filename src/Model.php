@@ -15,9 +15,9 @@
  * @link     https://github.com/purekid/mongodm
  */
 
-namespace Purekid\Mongodm;
+namespace WasabiWeb\Mongodm;
 
-use \Purekid\Mongodm\Exception\InvalidDataTypeException;
+use \WasabiWeb\Mongodm\Exception\InvalidDataTypeException;
 
 /**
  * Mongodm - A PHP Mongodb ORM
